@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.EditText;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -42,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
     String baseUrl = "https://api.github.com/users/";  // This is the API base URL (GitHub API)
     String url;  // This will hold the full URL which will include the username entered in the etGitHubUser.
+    List<String> repolist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         this.tvRepoList.setMovementMethod(new ScrollingMovementMethod());  // This makes our text box scrollable, for those big GitHub contributors with lots of repos :)
 
         requestQueue = Volley.newRequestQueue(this);  // This setups up a new request queue which we will need to make HTTP requests.
-
+        repolist = new ArrayList<>();
     }
 
     private void clearRepoList() {
@@ -68,7 +71,8 @@ public class MainActivity extends AppCompatActivity {
         // And then adds them followed by a new line (\n\n make two new lines).
         String strRow = repoName + " / " + lastUpdated;
         String currentText = tvRepoList.getText().toString();
-        this.tvRepoList.setText(currentText + "\n\n" + strRow);
+        //this.tvRepoList.setText(currentText + "\n\n" + strRow);
+
     }
 
     private void setRepoListText(String str) {
@@ -79,8 +83,8 @@ public class MainActivity extends AppCompatActivity {
     private void getRepoList(String username) {
         // First, we insert the username into the repo url.
         // The repo url is defined in GitHubs API docs (https://developer.github.com/v3/repos/).
-        this.url = this.baseUrl + username + "/repos";
-  // this.url = "https://api.iextrading.com/1.0/stock/market/list/mostactive";
+//        this.url = this.baseUrl + username + "/repos";
+   this.url = "https://api.iextrading.com/1.0/stock/market/list/mostactive";
 
         // Next, we create a new JsonArrayRequest. This will use Volley to make a HTTP request
         // that expects a JSON Array Response.
@@ -96,11 +100,12 @@ public class MainActivity extends AppCompatActivity {
                                 try {
                                     // For each repo, add a new line to our repo list.
                                     JSONObject jsonObj = response.getJSONObject(i);
-                                    String repoName = jsonObj.get("name").toString();
-                                    String lastUpdated = jsonObj.get("updated_at").toString();
-//                                    String repoName = jsonObj.get("symbol").toString();
-//                                    String lastUpdated = jsonObj.get("companyName").toString();
+//                                    String repoName = jsonObj.get("name").toString();
+//                                    String lastUpdated = jsonObj.get("updated_at").toString();
+                                    String repoName = jsonObj.get("symbol").toString();
+                                    String lastUpdated = jsonObj.get("companyName").toString();
                                     addToRepoList(repoName, lastUpdated);
+                                    repolist.add(repoName);
                                     System.out.println(jsonObj);
                                     System.out.println(repoName);
                                     System.out.println(lastUpdated);
@@ -114,8 +119,19 @@ public class MainActivity extends AppCompatActivity {
                             // The user didn't have any repos.
                             setRepoListText("No repos found.");
                         }
+                        String currentText = "";
+
+                        String repoliststring;
+                        for(String string1: repolist){
+                            System.out.println("i");
+                            currentText = tvRepoList.getText().toString();
+                            tvRepoList.setText(currentText + "\n\n" + string1);
+                        }
+                        System.out.println("endend");
 
                     }
+
+
                 },
 
                 new Response.ErrorListener() {
@@ -138,16 +154,17 @@ public class MainActivity extends AppCompatActivity {
         // Call our getRepoList() function that is defined above and pass in the
         // text which has been entered into the etGitHubUser text input field.
         getRepoList(etGitHubUser.getText().toString());
+
+
+
     }
-//    /** Called when the user taps the Send button */
-//    public void sendMessage(View view) {
-//        Intent intent = new Intent(this, DisplayMessageActivity.class);
+    /** Called when the user taps the Send button */
+    public void sendMessage(View view) {
+        Intent intent = new Intent(this, RepoList.class);
 //        EditText editText = (EditText) findViewById(R.id.editText);
 //        String message = editText.getText().toString();
 //        intent.putExtra(EXTRA_MESSAGE, message);
-//        startActivity(intent);
-//
-//
-//
-//    }
+        startActivity(intent);
+
+    }
 }
