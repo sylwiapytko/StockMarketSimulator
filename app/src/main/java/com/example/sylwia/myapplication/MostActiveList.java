@@ -1,5 +1,6 @@
 package com.example.sylwia.myapplication;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,15 +25,15 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepoList extends AppCompatActivity {
+public class MostActiveList extends AppCompatActivity {
     RequestQueue requestQueue;  // This is our requests queue to process our HTTP requests.
     List<String> repos;
     String url;  // This will hold the full URL which will include the username entered in the etGitHubUser.
-
+    public static final String compSymbol = "com.example.myfirstapp.MESSAGE";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_repo_list);
+        setContentView(R.layout.activity_most_active_list);
         requestQueue = Volley.newRequestQueue(this);  // This setups up a new request queue which we will need to make HTTP requests.
 
 
@@ -58,7 +59,11 @@ private void setRepoList(){
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     String food = String.valueOf(parent.getItemAtPosition(position));
-                    Toast.makeText(RepoList.this, food, Toast.LENGTH_LONG).show();
+                    Toast.makeText(MostActiveList.this, food, Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(view.getContext(), CompDetailsView.class);
+        String message = String.valueOf(parent.getItemAtPosition(position));
+        intent.putExtra(compSymbol, message);
+                    startActivity(intent);
                 }
             }
     );
@@ -88,7 +93,7 @@ private void setRepoList(){
                                     JSONObject jsonObj = response.getJSONObject(i);
 //                                    String repoName = jsonObj.get("name").toString();
                                     //String lastUpdated = jsonObj.get("updated_at").toString();
-                                    String repoName = jsonObj.get("companyName").toString();
+                                    String repoName = jsonObj.get("symbol").toString();
 //                                    String companyName = jsonObj.get("companyName").toString();
                                     repos.add(repoName);
 //                                    System.out.println(jsonObj);

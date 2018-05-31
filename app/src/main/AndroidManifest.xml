@@ -28,7 +28,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name=".RepoList"></activity>
+        <activity android:name=".MostActiveList" />
+        <activity
+            android:name=".CompDetailsView"
+            android:label="@string/title_activity_comp_details"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
