@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.sylwia.myapplication.MainActivity">
+
+    <!--<TextView-->
+        <!--android:id="@+id/tvIsConnected"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:background="#FF0000"-->
+        <!--android:textColor="#FFF"-->
+        <!--android:textSize="18dp"-->
+        <!--android:layout_marginBottom="5dp"-->
+        <!--android:text="is connected? " />-->
+
+    <!--<EditText-->
+        <!--android:id="@+id/editText"-->
+        <!--android:layout_width="224dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginStart="16dp"-->
+        <!--android:layout_marginTop="16dp"-->
+        <!--android:ems="10"-->
+        <!--android:hint="@string/edit_message"-->
+        <!--android:inputType="textPersonName"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--<Button-->
+        <!--android:id="@+id/button"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginEnd="16dp"-->
+        <!--android:layout_marginStart="16dp"-->
+        <!--android:layout_marginTop="16dp"-->
+        <!--android:onClick="sendMessage"-->
+        <!--android:text="@string/button_send"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintHorizontal_bias="0.5"-->
+        <!--app:layout_constraintStart_toEndOf="@+id/editText"-->
+        <!--app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--<EditText-->
+        <!--android:id="@+id/etResponse"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="fill_parent"-->
+        <!--android:ems="10"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:inputType="textMultiLine" >\-->
+        <!--<requestFocus />-->
+    <!--</EditText>-->
+
+    <EditText
+        android:id="@+id/et_github_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="16dp"
+        android:ems="10"
+        android:hint="GitHub Username"
+        android:inputType="textPersonName"
+        android:text=""
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <Button
+        android:text="Get Repos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_github_user"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/btn_get_repos"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="getReposClicked" />
+
+    <TextView
+        android:id="@+id/tv_repo_list"
+        android:layout_width="306dp"
+        android:layout_height="368dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/btn_get_repos"
+        android:layout_marginLeft="24dp"
+        android:scrollbars="vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:layout_editor_absoluteY="73dp" />
+
+
+</android.support.constraint.ConstraintLayout>
