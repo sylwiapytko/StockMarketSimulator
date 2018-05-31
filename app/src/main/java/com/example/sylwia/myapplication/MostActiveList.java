@@ -60,7 +60,7 @@ private void setRepoList(){
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     String food = String.valueOf(parent.getItemAtPosition(position));
                     Toast.makeText(MostActiveList.this, food, Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(view.getContext(), CompDetailsView.class);
+                    Intent intent = new Intent(view.getContext(), CompDetails.class);
         String message = String.valueOf(parent.getItemAtPosition(position));
         intent.putExtra(compSymbol, message);
                     startActivity(intent);
