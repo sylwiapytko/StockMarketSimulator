@@ -66,9 +66,9 @@ public class DBHandler extends SQLiteOpenHelper{
         }
 
         //Delete a product from the database
-        public void deleteProduct(String symbol){
+        public void deletePurchase(Integer id){
             SQLiteDatabase db = getWritableDatabase();
-            db.execSQL("DELETE FROM " + TABLE_PURCHASE + " WHERE " + PURCHASE_SYMBOL + "=\"" + symbol + "\";");
+            db.execSQL("DELETE FROM " + TABLE_PURCHASE + " WHERE " + PURCHASE_ID + "=\"" + id + "\";");
         }
 public List<PurchasedComp> selectAllPurchasedComp(){
             List<PurchasedComp> purchasedCompList= new ArrayList<>();

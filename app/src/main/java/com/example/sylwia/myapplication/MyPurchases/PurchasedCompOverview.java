@@ -20,14 +20,7 @@ public class PurchasedCompOverview implements Serializable {
     public PurchasedCompOverview() {
     }
 
-    public PurchasedCompOverview(String symbol, String companyName, Double purchasePrice, Double latestPrice) {
-        this.symbol = symbol;
-        this.companyName= companyName;
-        this.purchasePrice = purchasePrice;
-        this.latestPrice = latestPrice;
-        this.difference=0.0;
-        this.totalDifference=0.0;
-    }
+
 
     public PurchasedCompOverview(Integer id, String symbol, Double purchasePrice, Integer amount) {
         this.id= id;
@@ -94,5 +87,13 @@ public class PurchasedCompOverview implements Serializable {
 
     public void setTotalDifference(Double totalDifference) {
         this.totalDifference = totalDifference;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

@@ -7,15 +7,20 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.sylwia.myapplication.CompList.MostActiveList;
+import com.example.sylwia.myapplication.DBHandler;
 import com.example.sylwia.myapplication.MyPurchases.MyPurchases;
 import com.example.sylwia.myapplication.MyPurchases.PurchasedComp;
 import com.example.sylwia.myapplication.MyPurchases.PurchasedCompOverview;
 import com.example.sylwia.myapplication.R;
 
 public class PurchasedCompDetails extends AppCompatActivity {
+
+    DBHandler dbHandler;
+    PurchasedCompOverview purchasedCompOverview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,9 +30,9 @@ public class PurchasedCompDetails extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Intent intent = getIntent();
-        PurchasedCompOverview purchasedCompOverview = (PurchasedCompOverview)intent.getSerializableExtra("extraPurchasedCompOverviev");
+        purchasedCompOverview = (PurchasedCompOverview)intent.getSerializableExtra("extraPurchasedCompOverviev");
 
-
+        dbHandler = new DBHandler(this, null, null, 1);
 
         TextView tv_symbol = findViewById(R.id.symbol);
         TextView tv_companyName = findViewById(R.id.compName);
@@ -50,6 +55,10 @@ public class PurchasedCompDetails extends AppCompatActivity {
 
     }
 
+    public void onSell(View view) {
+        dbHandler.deletePurchase(purchasedCompOverview.getId());
+        onSeePurchased(view);
+    }
     public void onSeePurchased(View view) {
         Intent intent = new Intent(this, MyPurchases.class);
         startActivity(intent);
