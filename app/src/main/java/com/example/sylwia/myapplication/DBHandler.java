@@ -5,6 +5,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.Cursor;
 import android.content.Context;
 import android.content.ContentValues;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Sylwia on 5/31/2018.
  */
@@ -63,6 +67,47 @@ public class DBHandler extends SQLiteOpenHelper{
             SQLiteDatabase db = getWritableDatabase();
             db.execSQL("DELETE FROM " + TABLE_PURCHASE + " WHERE " + PURCHASE_SYMBOL + "=\"" + symbol + "\";");
         }
+public List<PurchasedComp> selectAllPurchasedComp(){
+            List<PurchasedComp> purchasedCompList= new ArrayList<>();
+    SQLiteDatabase db = getWritableDatabase();
+    String query = "SELECT * FROM " + TABLE_PURCHASE + " WHERE 1";
+    Cursor recordSet = db.rawQuery(query, null);
+    recordSet.moveToFirst();
+    while (!recordSet.isAfterLast()) {
+        if (recordSet.getString(recordSet.getColumnIndex("symbol")) != null) {
+            Integer id = Integer.parseInt(recordSet.getString(recordSet.getColumnIndex(PURCHASE_ID)));
+            String symbol = recordSet.getString(recordSet.getColumnIndex(PURCHASE_SYMBOL));
+            Double purchasePrice = Double.parseDouble(recordSet.getString(recordSet.getColumnIndex(PURCHASE_PRICE)));
+            Integer purchaseAmount = Integer.parseInt(recordSet.getString(recordSet.getColumnIndex(PURCHASE_AMOUNT)));
+            PurchasedComp purchasedComp = new PurchasedComp(id, symbol, purchasePrice, purchaseAmount);
+            purchasedCompList.add(purchasedComp);
+        }
+        recordSet.moveToNext();
+    }
+    db.close();
+    return purchasedCompList;
+}
+
+    public List<PurchasedCompOverview> selectAllPurchasedCompOverview(){
+        List<PurchasedCompOverview> purchasedCompOverviewList= new ArrayList<>();
+        SQLiteDatabase db = getWritableDatabase();
+        String query = "SELECT * FROM " + TABLE_PURCHASE + " WHERE 1";
+        Cursor recordSet = db.rawQuery(query, null);
+        recordSet.moveToFirst();
+        while (!recordSet.isAfterLast()) {
+            if (recordSet.getString(recordSet.getColumnIndex("symbol")) != null) {
+                Integer id = Integer.parseInt(recordSet.getString(recordSet.getColumnIndex(PURCHASE_ID)));
+                String symbol = recordSet.getString(recordSet.getColumnIndex(PURCHASE_SYMBOL));
+                Double purchasePrice = Double.parseDouble(recordSet.getString(recordSet.getColumnIndex(PURCHASE_PRICE)));
+                PurchasedCompOverview purchasedCompOverview = new PurchasedCompOverview(id, symbol, purchasePrice);
+                purchasedCompOverviewList.add(purchasedCompOverview);
+            }
+            recordSet.moveToNext();
+        }
+        db.close();
+        return purchasedCompOverviewList;
+    }
+
 
         // this is goint in record_TextView in the Main activity.
         public String databaseToString(){

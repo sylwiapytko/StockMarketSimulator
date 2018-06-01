@@ -33,7 +33,7 @@
             android:name=".CompDetails"
             android:label="@string/title_activity_comp_details"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MyPurchases"></activity>
+        <activity android:name=".MyPurchases" />
     </application>
 
 </manifest>

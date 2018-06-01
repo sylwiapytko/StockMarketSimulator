@@ -64,6 +64,7 @@
             android:id="@+id/purchased"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="onSeePurchased"
             android:text="See purchased" />
 
     </LinearLayout>

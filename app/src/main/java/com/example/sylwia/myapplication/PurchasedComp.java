@@ -20,6 +20,13 @@ public class PurchasedComp {
         this.purchaseAmount = purchaseAmount;
     }
 
+    public PurchasedComp(Integer id, String symbol, Double purchasePrice, Integer purchaseAmount) {
+        this.id = id;
+        this.symbol = symbol;
+        this.purchasePrice = purchasePrice;
+        this.purchaseAmount = purchaseAmount;
+    }
+
     public String getSymbol() {
         return symbol;
     }

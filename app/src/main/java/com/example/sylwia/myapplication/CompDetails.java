@@ -105,4 +105,8 @@ public class CompDetails extends AppCompatActivity {
         dbHandler.addPurchase(purchasedComp);
         printDatabase();
     }
+    public void onSeePurchased(View view) {
+        Intent intent = new Intent(this, MyPurchases.class);
+        startActivity(intent);
+    }
 }
