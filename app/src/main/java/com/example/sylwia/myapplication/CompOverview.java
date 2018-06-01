@@ -11,6 +11,15 @@ public class CompOverview {
     private  Double latestPrice;
     private Double change;
 
+    public CompOverview() {
+    }
+
+    public CompOverview(String symbol, String companyName, Double latestPrice, Double change) {
+        this.symbol = symbol;
+        this.companyName = companyName;
+        this.latestPrice = latestPrice;
+        this.change = change;
+    }
 
     public String getSymbol() {
         return symbol;

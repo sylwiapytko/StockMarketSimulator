@@ -39,13 +39,11 @@ public class CompDetails extends AppCompatActivity {
 
         dbHandler = new DBHandler(this, null, null, 1);
         requestQueue = Volley.newRequestQueue(this);
-        SQLiteDatabase db = dbHandler.getWritableDatabase();
-        dbHandler.updateShema(db);
-        // Get the Intent that started this activity and extract the string
+
         Intent intent = getIntent();
         String symbol = intent.getStringExtra(MostActiveList.compSymbol);
         recordsTextView = (TextView) findViewById(R.id.showdb);
-        // Capture the layout's TextView and set the string as its text
+
         printDatabase();
         getCompDetails(symbol);
 
