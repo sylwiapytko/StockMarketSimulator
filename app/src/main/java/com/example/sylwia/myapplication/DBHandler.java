@@ -58,7 +58,7 @@ public class DBHandler extends SQLiteOpenHelper{
             ContentValues values = new ContentValues();
             values.put(PURCHASE_SYMBOL, purchasedComp.getSymbol());
             values.put(PURCHASE_PRICE, purchasedComp.getPurchasePrice());
-            //values.put(PURCHASE_AMOUNT, purchasedComp.getPurchaseAmount());
+            values.put(PURCHASE_AMOUNT, purchasedComp.getPurchaseAmount());
             SQLiteDatabase db = getWritableDatabase();
             db.insert(TABLE_PURCHASE, null, values);
             db.close();
@@ -102,7 +102,9 @@ public List<PurchasedComp> selectAllPurchasedComp(){
                 Integer id = Integer.parseInt(recordSet.getString(recordSet.getColumnIndex(PURCHASE_ID)));
                 String symbol = recordSet.getString(recordSet.getColumnIndex(PURCHASE_SYMBOL));
                 Double purchasePrice = Double.parseDouble(recordSet.getString(recordSet.getColumnIndex(PURCHASE_PRICE)));
-                PurchasedCompOverview purchasedCompOverview = new PurchasedCompOverview(id, symbol, purchasePrice);
+                System.out.println(recordSet.getString(recordSet.getColumnIndex(PURCHASE_AMOUNT)));
+                Integer amount = Integer.parseInt(recordSet.getString(recordSet.getColumnIndex(PURCHASE_AMOUNT)));
+                PurchasedCompOverview purchasedCompOverview = new PurchasedCompOverview(id, symbol, purchasePrice, amount);
                 purchasedCompOverviewList.add(purchasedCompOverview);
             }
             recordSet.moveToNext();

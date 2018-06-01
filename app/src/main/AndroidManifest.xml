@@ -34,6 +34,10 @@
             android:label="@string/title_activity_comp_details"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MyPurchases.MyPurchases" />
+        <activity
+            android:name=".CompDetails.PurchasedCompDetails"
+            android:label="@string/title_activity_purchased_comp_details"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

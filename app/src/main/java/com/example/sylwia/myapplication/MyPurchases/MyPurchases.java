@@ -16,6 +16,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.sylwia.myapplication.CompDetails.CompDetails;
+import com.example.sylwia.myapplication.CompDetails.PurchasedCompDetails;
 import com.example.sylwia.myapplication.DBHandler;
 import com.example.sylwia.myapplication.R;
 
@@ -32,7 +33,6 @@ public class MyPurchases extends AppCompatActivity {
     String url;
     DBHandler dbHandler;
 
-    public static final String compSymbol = "com.example.myfirstapp.MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,9 +96,9 @@ public class MyPurchases extends AppCompatActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         PurchasedCompOverview purchasedCompOverview = (PurchasedCompOverview) parent.getItemAtPosition(position);
-                        Intent intent = new Intent(view.getContext(), CompDetails.class);
-                        String message = purchasedCompOverview.getSymbol();
-                        intent.putExtra(compSymbol, message);
+                        Intent intent = new Intent(view.getContext(), PurchasedCompDetails.class);
+
+                        intent.putExtra("extraPurchasedCompOverviev", purchasedCompOverview);
                         startActivity(intent);
                     }
                 }

@@ -1,17 +1,21 @@
 package com.example.sylwia.myapplication.MyPurchases;
 
+import java.io.Serializable;
+
 /**
  * Created by Sylwia on 5/31/2018.
  */
 
-public class PurchasedCompOverview {
+public class PurchasedCompOverview implements Serializable {
 
     private Integer id;
     private String symbol;
     private String companyName;
     private  Double purchasePrice;
     private  Double latestPrice;
+    private Integer amount;
     private  Double difference;
+    private  Double totalDifference;
 
     public PurchasedCompOverview() {
     }
@@ -22,14 +26,17 @@ public class PurchasedCompOverview {
         this.purchasePrice = purchasePrice;
         this.latestPrice = latestPrice;
         this.difference=0.0;
+        this.totalDifference=0.0;
     }
 
-    public PurchasedCompOverview(Integer id, String symbol, Double purchasePrice) {
+    public PurchasedCompOverview(Integer id, String symbol, Double purchasePrice, Integer amount) {
         this.id= id;
         this.symbol = symbol;
         this.purchasePrice = purchasePrice;
+        this.amount=amount;
         this.latestPrice=0.0;
         this.difference=0.0;
+        this.totalDifference=0.0;
     }
 
     public String getSymbol() {
@@ -70,5 +77,22 @@ public class PurchasedCompOverview {
 
     public void setDifference(Double difference) {
         this.difference = difference;
+        totalDifference= difference*amount;
+    }
+
+    public Integer getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Integer amount) {
+        this.amount = amount;
+    }
+
+    public Double getTotalDifference() {
+        return totalDifference;
+    }
+
+    public void setTotalDifference(Double totalDifference) {
+        this.totalDifference = totalDifference;
     }
 }
