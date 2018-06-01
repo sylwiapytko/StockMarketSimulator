@@ -3,6 +3,8 @@ package com.example.sylwia.myapplication;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.EditText;
 
@@ -146,5 +148,11 @@ public class MainActivity extends AppCompatActivity {
 //        intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
 
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater menuInflater= getMenuInflater();
+        menuInflater.inflate(R.menu.app_menu, menu);
+        return true;
     }
 }
