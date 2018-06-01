@@ -1,4 +1,4 @@
-package com.example.sylwia.myapplication;
+package com.example.sylwia.myapplication.MyPurchases;
 
 /**
  * Created by Sylwia on 5/31/2018.

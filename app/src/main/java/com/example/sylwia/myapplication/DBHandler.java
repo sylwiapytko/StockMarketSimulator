@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.content.Context;
 import android.content.ContentValues;
 
+import com.example.sylwia.myapplication.MyPurchases.PurchasedComp;
+import com.example.sylwia.myapplication.MyPurchases.PurchasedCompOverview;
+
 import java.util.ArrayList;
 import java.util.List;
 

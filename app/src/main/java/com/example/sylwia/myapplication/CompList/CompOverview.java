@@ -1,4 +1,4 @@
-package com.example.sylwia.myapplication;
+package com.example.sylwia.myapplication.CompList;
 
 /**
  * Created by Sylwia on 5/31/2018.

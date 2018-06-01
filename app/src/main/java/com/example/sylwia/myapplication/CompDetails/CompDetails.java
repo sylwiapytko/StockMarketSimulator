@@ -1,10 +1,8 @@
-package com.example.sylwia.myapplication;
+package com.example.sylwia.myapplication.CompDetails;
 
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -17,6 +15,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.sylwia.myapplication.CompList.MostActiveList;
+import com.example.sylwia.myapplication.DBHandler;
+import com.example.sylwia.myapplication.MyPurchases.MyPurchases;
+import com.example.sylwia.myapplication.MyPurchases.PurchasedComp;
+import com.example.sylwia.myapplication.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,7 +42,8 @@ public class CompDetails extends AppCompatActivity {
 
         dbHandler = new DBHandler(this, null, null, 1);
         requestQueue = Volley.newRequestQueue(this);
-
+//        SQLiteDatabase db = dbHandler.getWritableDatabase();
+//        dbHandler.updateShema(db);
         Intent intent = getIntent();
         String symbol = intent.getStringExtra(MostActiveList.compSymbol);
         recordsTextView = (TextView) findViewById(R.id.showdb);

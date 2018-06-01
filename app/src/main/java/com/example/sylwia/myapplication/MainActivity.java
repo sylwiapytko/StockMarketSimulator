@@ -20,6 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.sylwia.myapplication.CompList.MostActiveList;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -52,17 +53,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void clearRepoList() {
-        // This will clear the repo list (set it as a blank string).
         this.tvRepoList.setText("");
     }
 
     private void addToRepoList(String repoName, String lastUpdated) {
-        // This will add a new repo to our list.
-        // It combines the repoName and lastUpdated strings together.
-        // And then adds them followed by a new line (\n\n make two new lines).
         String strRow = repoName + " / " + lastUpdated;
         String currentText = tvRepoList.getText().toString();
-        //this.tvRepoList.setText(currentText + "\n\n" + strRow);
 
     }
 
@@ -101,13 +97,11 @@ public class MainActivity extends AppCompatActivity {
                                     System.out.println(repoName);
                                     System.out.println(lastUpdated);
                                 } catch (JSONException e) {
-                                    // If there is an error then output this to the logs.
                                     Log.e("Volley", "Invalid JSON Object.");
                                 }
 
                             }
                         } else {
-                            // The user didn't have any repos.
                             setRepoListText("No repos found.");
                         }
                         String currentText = "";
@@ -134,16 +128,11 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         );
-        // Add the request we just defined to our request queue.
-        // The request queue will automatically handle the request as soon as it can.
         requestQueue.add(arrReq);
     }
 
     public void getReposClicked(View v) {
-        // Clear the repo list (so we have a fresh screen to add to)
         clearRepoList();
-        // Call our getRepoList() function that is defined above and pass in the
-        // text which has been entered into the etGitHubUser text input field.
         getRepoList(etGitHubUser.getText().toString());
 
 

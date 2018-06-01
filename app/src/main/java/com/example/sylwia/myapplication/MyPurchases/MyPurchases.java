@@ -1,4 +1,4 @@
-package com.example.sylwia.myapplication;
+package com.example.sylwia.myapplication.MyPurchases;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -16,12 +15,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.sylwia.myapplication.CompDetails.CompDetails;
+import com.example.sylwia.myapplication.DBHandler;
+import com.example.sylwia.myapplication.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MyPurchases extends AppCompatActivity {
