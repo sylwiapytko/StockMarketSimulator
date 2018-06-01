@@ -20,6 +20,7 @@ import com.example.sylwia.myapplication.CompList.MostActiveList;
 import com.example.sylwia.myapplication.DBHandler;
 import com.example.sylwia.myapplication.MyPurchases.MyPurchases;
 import com.example.sylwia.myapplication.MyPurchases.PurchasedComp;
+import com.example.sylwia.myapplication.MyPurchases.PurchasedCompOverview;
 import com.example.sylwia.myapplication.R;
 
 import org.json.JSONException;
@@ -47,18 +48,17 @@ public class CompDetails extends AppCompatActivity {
 //        dbHandler.updateShema(db);
         Intent intent = getIntent();
         String symbol = intent.getStringExtra(MostActiveList.compSymbol);
-        recordsTextView = (TextView) findViewById(R.id.showdb);
-
-        printDatabase();
+//        recordsTextView = (TextView) findViewById(R.id.showdb);
+//        printDatabase();
         getCompDetails(symbol);
 
 
     }
-    public void printDatabase(){
-        String dbString = dbHandler.databaseToString();
-        recordsTextView.setText(dbString);
-
-    }
+//    public void printDatabase(){
+//        String dbString = dbHandler.databaseToString();
+//        recordsTextView.setText(dbString);
+//
+//    }
     private void getCompDetails(final String compSymbol) {
         this.url = "https://api.iextrading.com/1.0/stock/"+compSymbol+"/quote";
         JsonObjectRequest objReq = new JsonObjectRequest(Request.Method.GET, url,
@@ -111,7 +111,9 @@ public class CompDetails extends AppCompatActivity {
         String amount = editText.getText().toString();
         purchasedComp.setPurchaseAmount(Integer.parseInt(amount));
         dbHandler.addPurchase(purchasedComp);
-        printDatabase();
+
+        Intent intent = new Intent(view.getContext(), MyPurchases.class);
+        startActivity(intent);
     }
     public void onSeePurchased(View view) {
         Intent intent = new Intent(this, MyPurchases.class);
