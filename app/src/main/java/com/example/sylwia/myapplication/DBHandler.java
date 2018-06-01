@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.content.Context;
 import android.content.ContentValues;
 
+import com.example.sylwia.myapplication.MyPurchases.MyBalance;
 import com.example.sylwia.myapplication.MyPurchases.PurchasedComp;
 import com.example.sylwia.myapplication.MyPurchases.PurchasedCompOverview;
 
@@ -25,33 +26,79 @@ public class DBHandler extends SQLiteOpenHelper{
         public static final String PURCHASE_PRICE = "purchaseprice";
         public static final String PURCHASE_AMOUNT = "purchaseamount";
 
-        //We need to pass database information along to superclass
+    public static final String TABLE_BALANCE = "mybalance";
+    public static final String BALANCE_ID = "id";
+    public static final String BALANCE_BALANCE = "balance";
+
+
+
+    public void setMyBalance(MyBalance myBalance) {
+        this.myBalance = myBalance;
+    }
+
+    MyBalance myBalance;
+
+
+
+    //We need to pass database information along to superclass
         public DBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
             super(context, DATABASE_NAME, factory, DATABASE_VERSION);
         }
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-            System.out.println("create");
-            System.out.println("create");
-            System.out.println("create");
-            System.out.println("create");
-            System.out.println("create");
-            System.out.println("create");
             String query = "CREATE TABLE " + TABLE_PURCHASE + "(" +
                     PURCHASE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     PURCHASE_SYMBOL + " TEXT, " +
                     PURCHASE_AMOUNT + " INTEGER, " +
                     PURCHASE_PRICE + " REAL " +
                     ");";
+
+            myBalance = new MyBalance(1,100.00);
             db.execSQL(query);
+
+            String queryBalance = "CREATE TABLE " + TABLE_BALANCE + "(" +
+                    BALANCE_ID +" INTEGER,  " +
+                    BALANCE_BALANCE + " INTEGER "+
+                    ");";
+            System.out.println(queryBalance);
+            db.execSQL(queryBalance);
+            ContentValues values = new ContentValues();
+            values.put(BALANCE_ID, myBalance.getId());
+            values.put(BALANCE_BALANCE, myBalance.getBalance());
+            db.insert(TABLE_BALANCE, null, values);
+            db.close();
         }
-        //Lesson 51
+
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             System.out.println("update");
             db.execSQL("DROP TABLE IF EXISTS " + TABLE_PURCHASE);
             onCreate(db);
+        }
+        public void updateMyBalance(Double newBalance){
+            SQLiteDatabase db = getWritableDatabase();
+            ContentValues values = new ContentValues();
+            values.put(BALANCE_BALANCE, newBalance);
+            db.update(TABLE_BALANCE,values,BALANCE_ID+"="+1,null);
+            db.close();
+        }
+        public Double getMyBalance(){
+            Double balance= 0.0;
+            SQLiteDatabase db = getWritableDatabase();
+            Integer id = 1;
+            String query = "SELECT "+BALANCE_BALANCE+" FROM " + TABLE_BALANCE + " WHERE " + BALANCE_ID  + "=\"" + id + "\";";
+            System.out.println( query);
+            Cursor recordSet = db.rawQuery(query, null);
+            recordSet.moveToFirst();
+            while (!recordSet.isAfterLast()) {
+                if (recordSet.getString(recordSet.getColumnIndex(BALANCE_BALANCE)) != null) {
+                     balance = Double.parseDouble(recordSet.getString(recordSet.getColumnIndex(BALANCE_BALANCE)));
+                }
+                recordSet.moveToNext();
+            }
+            db.close();
+            return balance;
         }
 
         public void addPurchase(PurchasedComp purchasedComp){
@@ -143,6 +190,7 @@ public List<PurchasedComp> selectAllPurchasedComp(){
     public void updateShema(SQLiteDatabase db) {
         System.out.println("update");
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PURCHASE);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_BALANCE);
         onCreate(db);
     }
 }

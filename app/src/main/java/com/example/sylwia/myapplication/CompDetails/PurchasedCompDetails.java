@@ -21,6 +21,7 @@ public class PurchasedCompDetails extends AppCompatActivity {
 
     DBHandler dbHandler;
     PurchasedCompOverview purchasedCompOverview;
+    Double myBalance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +53,18 @@ public class PurchasedCompDetails extends AppCompatActivity {
         tv_totalDifference.setText(purchasedCompOverview.getTotalDifference().toString());
 
 
+        TextView balance =findViewById(R.id.balance);
+        myBalance = dbHandler.getMyBalance();
+        balance.setText(myBalance.toString());
+
 
     }
 
     public void onSell(View view) {
+
+        Double totalSum= purchasedCompOverview.getAmount()*purchasedCompOverview.getLatestPrice();
+        Double newBalance =myBalance+totalSum;
+        dbHandler.updateMyBalance(newBalance);
         dbHandler.deletePurchase(purchasedCompOverview.getId());
         onSeePurchased(view);
     }

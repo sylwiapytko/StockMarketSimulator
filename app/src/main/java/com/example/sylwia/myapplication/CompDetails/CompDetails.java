@@ -34,6 +34,7 @@ public class CompDetails extends AppCompatActivity {
     PurchasedComp purchasedComp;
 
     TextView recordsTextView;
+    Double myBalance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,14 +45,14 @@ public class CompDetails extends AppCompatActivity {
 
         dbHandler = new DBHandler(this, null, null, 1);
         requestQueue = Volley.newRequestQueue(this);
-//        SQLiteDatabase db = dbHandler.getWritableDatabase();
+        SQLiteDatabase db = dbHandler.getWritableDatabase();
 //        dbHandler.updateShema(db);
         Intent intent = getIntent();
         String symbol = intent.getStringExtra(MostActiveList.compSymbol);
-//        recordsTextView = (TextView) findViewById(R.id.showdb);
-//        printDatabase();
         getCompDetails(symbol);
-
+TextView balance =findViewById(R.id.balance);
+myBalance = dbHandler.getMyBalance();
+balance.setText(myBalance.toString());
 
     }
 //    public void printDatabase(){
@@ -110,7 +111,11 @@ public class CompDetails extends AppCompatActivity {
         EditText editText = (EditText) findViewById(R.id.amount);
         String amount = editText.getText().toString();
         purchasedComp.setPurchaseAmount(Integer.parseInt(amount));
+        Double totalSum= purchasedComp.getPurchaseAmount()*purchasedComp.getPurchasePrice();
+        Double newBalance =myBalance-totalSum;
+        dbHandler.updateMyBalance(newBalance);
         dbHandler.addPurchase(purchasedComp);
+
 
         Intent intent = new Intent(view.getContext(), MyPurchases.class);
         startActivity(intent);
