@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -40,8 +43,8 @@ public class CompDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comp_details);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
 
         dbHandler = new DBHandler(this, null, null, 1);
         requestQueue = Volley.newRequestQueue(this);
@@ -123,5 +126,36 @@ balance.setText(myBalance.toString());
     public void onSeePurchased(View view) {
         Intent intent = new Intent(this, MyPurchases.class);
         startActivity(intent);
+    }
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater menuInflater= getMenuInflater();
+        menuInflater.inflate(R.menu.app_menu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menu_most_active:{
+                if (item.isChecked())
+                    item.setChecked(false);
+                else
+                    item.setChecked(true);
+
+                startActivity(new Intent(this, MostActiveList.class));
+                return true;
+            }
+
+            case R.id.menu_my_purchases:{
+                if (item.isChecked())
+                    item.setChecked(false);
+                else
+                    item.setChecked(true);
+                startActivity(new Intent(this, MyPurchases.class));
+                return true;
+            }
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

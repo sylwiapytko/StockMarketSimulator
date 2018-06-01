@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
@@ -17,6 +20,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.sylwia.myapplication.CompDetails.CompDetails;
 import com.example.sylwia.myapplication.CompDetails.PurchasedCompDetails;
+import com.example.sylwia.myapplication.CompList.MostActiveList;
 import com.example.sylwia.myapplication.DBHandler;
 import com.example.sylwia.myapplication.R;
 
@@ -103,5 +107,37 @@ public class MyPurchases extends AppCompatActivity {
                     }
                 }
         );
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater menuInflater= getMenuInflater();
+        menuInflater.inflate(R.menu.app_menu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menu_most_active:{
+                if (item.isChecked())
+                    item.setChecked(false);
+                else
+                    item.setChecked(true);
+
+                startActivity(new Intent(this, MostActiveList.class));
+                return true;
+            }
+
+            case R.id.menu_my_purchases:{
+                if (item.isChecked())
+                    item.setChecked(false);
+                else
+                    item.setChecked(true);
+                startActivity(new Intent(this, MyPurchases.class));
+                return true;
+            }
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
