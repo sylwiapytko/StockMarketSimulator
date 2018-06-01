@@ -46,7 +46,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="price"
-                    android:textAlignment="center"
+                    android:textAlignment="viewStart"
                     android:textSize="18sp" />
             </LinearLayout>
 
@@ -67,6 +67,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="price"
+                    android:textAlignment="viewStart"
                     android:textSize="18sp" />
             </LinearLayout>
 

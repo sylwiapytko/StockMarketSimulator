@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -106,6 +107,9 @@ public class CompDetails extends AppCompatActivity {
     }
 
     public void onBuy(View view) {
+        EditText editText = (EditText) findViewById(R.id.amount);
+        String amount = editText.getText().toString();
+        purchasedComp.setPurchaseAmount(Integer.parseInt(amount));
         dbHandler.addPurchase(purchasedComp);
         printDatabase();
     }
