@@ -35,17 +35,12 @@ public class Receiver  extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        // show toast
+
         System.out.println("alarm running");
 
-       // Toast.makeText(context, "Alarm running", Toast.LENGTH_SHORT).show();
-        // Create an explicit intent for an Activity in your app
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        Intent repeating_intent = new Intent(context, NotivicationDetails.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, new Intent(context, MyPurchases.class), PendingIntent.FLAG_UPDATE_CURRENT);
-
-
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context )
                 .setSmallIcon(R.drawable.icon_wallet)
@@ -57,7 +52,5 @@ public class Receiver  extends BroadcastReceiver {
                 .setPriority(Notification.PRIORITY_MAX)
                 .setAutoCancel(true);
         notificationManager.notify(100, mBuilder.build());
-        System.out.println("notification done");
-
     }
 }
