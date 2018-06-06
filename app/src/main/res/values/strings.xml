@@ -12,6 +12,7 @@
     <string name="mostActive">Companies</string>
     <string name="myPurchases">My Purchases</string>
     <string name="myNotifications">My Notifications</string>
-    <string name="title_activity_chart">Chart</string>
+    <string name="title_activity_chart">Last Month Chart</string>
+    <string name="title_activity_reset_account">ResetAccount</string>
 
 </resources>

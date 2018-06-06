@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.sylwia.myapplication.Chart;
 import com.example.sylwia.myapplication.CompList.MostActiveList;
 import com.example.sylwia.myapplication.DBHandler;
 import com.example.sylwia.myapplication.MyPurchases.MyPurchases;
@@ -27,12 +28,12 @@ public class PurchasedCompDetails extends AppCompatActivity {
     PurchasedCompOverview purchasedCompOverview;
     Double myBalance;
 
+    public static final String compSymbol = "com.example.myfirstapp.MESSAGE";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_purchased_comp_details);
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
 
         Intent intent = getIntent();
         purchasedCompOverview = (PurchasedCompOverview)intent.getSerializableExtra("extraPurchasedCompOverviev");
@@ -60,8 +61,6 @@ public class PurchasedCompDetails extends AppCompatActivity {
         TextView balance =findViewById(R.id.balance);
         myBalance = dbHandler.getMyBalance();
         balance.setText(myBalance.toString());
-
-
     }
 
     public void onSell(View view) {
@@ -113,6 +112,12 @@ public class PurchasedCompDetails extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+    public void onViewChart(View view) {
+        Intent intent = new Intent(view.getContext(), Chart.class);
+        String message = purchasedCompOverview.getSymbol();
+        intent.putExtra(compSymbol, message);
+        startActivity(intent);
     }
 
 }

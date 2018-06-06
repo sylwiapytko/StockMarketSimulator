@@ -11,7 +11,7 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="344dp"
-        android:layout_height="489dp"
+        android:layout_height="0dp"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp">
@@ -145,6 +145,17 @@
         </LinearLayout>
 
         <Button
+            android:id="@+id/sell"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="onSell"
+            android:text="SELL"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <Button
             android:id="@+id/purchased"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -152,17 +163,11 @@
             android:text="See purchased" />
 
         <Button
-            android:id="@+id/sell"
-            style="@style/Widget.AppCompat.Button.Colored"
+            android:id="@+id/chart"
             android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:onClick="onSell"
-            android:text="SELL" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:onClick="onViewChart"
+            android:text="View the Chart" />
 
 
     </LinearLayout>
