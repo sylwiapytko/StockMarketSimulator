@@ -106,6 +106,13 @@
         </LinearLayout>
 
         <Button
+            android:id="@+id/chart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onViewChart"
+            android:text="View the Chart" />
+
+        <Button
             android:id="@+id/purchased"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

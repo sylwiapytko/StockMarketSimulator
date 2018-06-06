@@ -30,13 +30,10 @@ public class MyNotifications extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_my_notifications);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        timePicker=(TimePicker)findViewById(R.id.timePicker);
 
+        timePicker=(TimePicker)findViewById(R.id.timePicker);
         timePicker.setCurrentHour(12);
         timePicker.setCurrentMinute(30);
-
     }
 
     public void onSetNotifications(View view) {
@@ -62,7 +59,7 @@ public class MyNotifications extends AppCompatActivity {
             editor.putBoolean("firstTime", true);
             editor.apply();
 
-            Toast.makeText(this, "Notifications set"+timePicker.getCurrentHour()+":"+ timePicker.getCurrentMinute(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Notifications set "+timePicker.getCurrentHour()+":"+ timePicker.getCurrentMinute(), Toast.LENGTH_SHORT).show();
         }
     }
     public boolean onCreateOptionsMenu(Menu menu){

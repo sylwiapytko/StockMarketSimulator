@@ -19,6 +19,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.sylwia.myapplication.Chart;
+import com.example.sylwia.myapplication.CompList.CompOverview;
 import com.example.sylwia.myapplication.CompList.MostActiveList;
 import com.example.sylwia.myapplication.DBHandler;
 import com.example.sylwia.myapplication.MyPurchases.MyPurchases;
@@ -39,6 +41,7 @@ public class CompDetails extends AppCompatActivity {
 
     TextView recordsTextView;
     Double myBalance;
+    public static final String compSymbol = "com.example.myfirstapp.MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,6 +125,12 @@ balance.setText(myBalance.toString());
 
 
         Intent intent = new Intent(view.getContext(), MyPurchases.class);
+        startActivity(intent);
+    }
+    public void onViewChart(View view) {
+        Intent intent = new Intent(view.getContext(), Chart.class);
+        String message = purchasedComp.getSymbol();
+        intent.putExtra(compSymbol, message);
         startActivity(intent);
     }
     public void onSeePurchased(View view) {
