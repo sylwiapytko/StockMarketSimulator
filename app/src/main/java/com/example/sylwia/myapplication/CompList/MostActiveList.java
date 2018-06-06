@@ -26,6 +26,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.sylwia.myapplication.CompDetails.CompDetails;
 import com.example.sylwia.myapplication.MyPurchases.MyPurchases;
+import com.example.sylwia.myapplication.Notifications.MyNotifications;
 import com.example.sylwia.myapplication.Notifications.Receiver;
 import com.example.sylwia.myapplication.R;
 
@@ -50,29 +51,7 @@ public class MostActiveList extends AppCompatActivity {
 
         compOverviewList = new ArrayList<>();
         getMostActiveList();
-
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        System.out.println("set alarm1 " +prefs.getBoolean("firstTime", false)+prefs.getBoolean("firstTime", true));
-        if (prefs.getBoolean("firstTime", false)) {
-            Intent alarmIntent = new Intent(this, Receiver.class);
-            System.out.println("set alarm1");
-
-
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTimeInMillis(System.currentTimeMillis());
-            calendar.set(Calendar.HOUR_OF_DAY, 1);
-            calendar.set(Calendar.MINUTE,1);
-            calendar.set(Calendar.SECOND, 1);
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, 0);
-            AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-
-            manager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                    AlarmManager.INTERVAL_DAY, pendingIntent);
-
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.putBoolean("firstTime", true);
-            editor.apply();
-        }
+        
     }
 
 private void setMostActiveList(){
@@ -153,7 +132,14 @@ private void setMostActiveList(){
                 startActivity(new Intent(this, MyPurchases.class));
                 return true;
             }
-
+            case R.id.menu_my_notifications:{
+                if (item.isChecked())
+                    item.setChecked(false);
+                else
+                    item.setChecked(true);
+                startActivity(new Intent(this, MyNotifications.class));
+                return true;
+            }
             default:
                 return super.onOptionsItemSelected(item);
         }

@@ -24,6 +24,7 @@ import com.example.sylwia.myapplication.DBHandler;
 import com.example.sylwia.myapplication.MyPurchases.MyPurchases;
 import com.example.sylwia.myapplication.MyPurchases.PurchasedComp;
 import com.example.sylwia.myapplication.MyPurchases.PurchasedCompOverview;
+import com.example.sylwia.myapplication.Notifications.MyNotifications;
 import com.example.sylwia.myapplication.R;
 
 import org.json.JSONException;
@@ -153,7 +154,14 @@ balance.setText(myBalance.toString());
                 startActivity(new Intent(this, MyPurchases.class));
                 return true;
             }
-
+            case R.id.menu_my_notifications:{
+                if (item.isChecked())
+                    item.setChecked(false);
+                else
+                    item.setChecked(true);
+                startActivity(new Intent(this, MyNotifications.class));
+                return true;
+            }
             default:
                 return super.onOptionsItemSelected(item);
         }

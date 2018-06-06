@@ -61,7 +61,6 @@ public class DBHandler extends SQLiteOpenHelper{
                     BALANCE_ID +" INTEGER,  " +
                     BALANCE_BALANCE + " INTEGER "+
                     ");";
-            System.out.println(queryBalance);
             db.execSQL(queryBalance);
             ContentValues values = new ContentValues();
             values.put(BALANCE_ID, myBalance.getId());
@@ -88,7 +87,6 @@ public class DBHandler extends SQLiteOpenHelper{
             SQLiteDatabase db = getWritableDatabase();
             Integer id = 1;
             String query = "SELECT "+BALANCE_BALANCE+" FROM " + TABLE_BALANCE + " WHERE " + BALANCE_ID  + "=\"" + id + "\";";
-            System.out.println( query);
             Cursor recordSet = db.rawQuery(query, null);
             recordSet.moveToFirst();
             while (!recordSet.isAfterLast()) {
@@ -149,7 +147,6 @@ public List<PurchasedComp> selectAllPurchasedComp(){
                 Integer id = Integer.parseInt(recordSet.getString(recordSet.getColumnIndex(PURCHASE_ID)));
                 String symbol = recordSet.getString(recordSet.getColumnIndex(PURCHASE_SYMBOL));
                 Double purchasePrice = Double.parseDouble(recordSet.getString(recordSet.getColumnIndex(PURCHASE_PRICE)));
-                System.out.println(recordSet.getString(recordSet.getColumnIndex(PURCHASE_AMOUNT)));
                 Integer amount = Integer.parseInt(recordSet.getString(recordSet.getColumnIndex(PURCHASE_AMOUNT)));
                 PurchasedCompOverview purchasedCompOverview = new PurchasedCompOverview(id, symbol, purchasePrice, amount);
                 purchasedCompOverviewList.add(purchasedCompOverview);
@@ -169,7 +166,6 @@ public List<PurchasedComp> selectAllPurchasedComp(){
 
             //Cursor points to a location in your results
             Cursor recordSet = db.rawQuery(query, null);
-            System.out.println(recordSet.toString());
             //Move to the first row in your results
             recordSet.moveToFirst();
 
