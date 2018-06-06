@@ -29,6 +29,7 @@ import com.example.sylwia.myapplication.MyPurchases.MyPurchases;
 import com.example.sylwia.myapplication.Notifications.MyNotifications;
 import com.example.sylwia.myapplication.Notifications.Receiver;
 import com.example.sylwia.myapplication.R;
+import com.example.sylwia.myapplication.ResetAccount;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -51,7 +52,7 @@ public class MostActiveList extends AppCompatActivity {
 
         compOverviewList = new ArrayList<>();
         getMostActiveList();
-        
+
     }
 
 private void setMostActiveList(){
@@ -138,6 +139,14 @@ private void setMostActiveList(){
                 else
                     item.setChecked(true);
                 startActivity(new Intent(this, MyNotifications.class));
+                return true;
+            }
+            case R.id.menu_reset_account:{
+                if (item.isChecked())
+                    item.setChecked(false);
+                else
+                    item.setChecked(true);
+                startActivity(new Intent(this, ResetAccount.class));
                 return true;
             }
             default:

@@ -8,11 +8,16 @@
     <string name="title_activity_most_active">Companies</string>
     <string name="title_activity_my_purchases">My Purchases</string>
     <string name="title_activity_my_notifications">My Notifications</string>
+    <string name="title_activity_chart">Last Month Chart</string>
+    <string name="title_activity_reset_account">Reset Account</string>
 
     <string name="mostActive">Companies</string>
     <string name="myPurchases">My Purchases</string>
     <string name="myNotifications">My Notifications</string>
-    <string name="title_activity_chart">Last Month Chart</string>
-    <string name="title_activity_reset_account">ResetAccount</string>
+    <string name="reset_account">Reset Account</string>
+
+    <string name="notification_explanation">Set hour for notifications about posible gain to your balance</string>
+
+
 
 </resources>

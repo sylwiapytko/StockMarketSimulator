@@ -21,6 +21,7 @@ import com.example.sylwia.myapplication.MyPurchases.PurchasedComp;
 import com.example.sylwia.myapplication.MyPurchases.PurchasedCompOverview;
 import com.example.sylwia.myapplication.Notifications.MyNotifications;
 import com.example.sylwia.myapplication.R;
+import com.example.sylwia.myapplication.ResetAccount;
 
 public class PurchasedCompDetails extends AppCompatActivity {
 
@@ -107,6 +108,14 @@ public class PurchasedCompDetails extends AppCompatActivity {
                 else
                     item.setChecked(true);
                 startActivity(new Intent(this, MyNotifications.class));
+                return true;
+            }
+            case R.id.menu_reset_account:{
+                if (item.isChecked())
+                    item.setChecked(false);
+                else
+                    item.setChecked(true);
+                startActivity(new Intent(this, ResetAccount.class));
                 return true;
             }
             default:

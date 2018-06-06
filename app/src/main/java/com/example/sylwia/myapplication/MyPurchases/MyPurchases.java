@@ -24,6 +24,7 @@ import com.example.sylwia.myapplication.CompList.MostActiveList;
 import com.example.sylwia.myapplication.DBHandler;
 import com.example.sylwia.myapplication.Notifications.MyNotifications;
 import com.example.sylwia.myapplication.R;
+import com.example.sylwia.myapplication.ResetAccount;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -142,6 +143,14 @@ public class MyPurchases extends AppCompatActivity {
                 else
                     item.setChecked(true);
                 startActivity(new Intent(this, MyNotifications.class));
+                return true;
+            }
+            case R.id.menu_reset_account:{
+                if (item.isChecked())
+                    item.setChecked(false);
+                else
+                    item.setChecked(true);
+                startActivity(new Intent(this, ResetAccount.class));
                 return true;
             }
             default:

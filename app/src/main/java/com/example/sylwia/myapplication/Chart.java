@@ -59,9 +59,6 @@ public class Chart extends AppCompatActivity {
          graph = (GraphView) findViewById(R.id.graph);
         getChart(symbol);
         graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(this));
-
-
-
     }
 
     private void getChart(final String symbol) {
@@ -145,6 +142,14 @@ public class Chart extends AppCompatActivity {
                 else
                     item.setChecked(true);
                 startActivity(new Intent(this, MyNotifications.class));
+                return true;
+            }
+            case R.id.menu_reset_account:{
+                if (item.isChecked())
+                    item.setChecked(false);
+                else
+                    item.setChecked(true);
+                startActivity(new Intent(this, ResetAccount.class));
                 return true;
             }
             default:

@@ -28,6 +28,7 @@ import com.example.sylwia.myapplication.MyPurchases.PurchasedComp;
 import com.example.sylwia.myapplication.MyPurchases.PurchasedCompOverview;
 import com.example.sylwia.myapplication.Notifications.MyNotifications;
 import com.example.sylwia.myapplication.R;
+import com.example.sylwia.myapplication.ResetAccount;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -169,6 +170,14 @@ balance.setText(myBalance.toString());
                 else
                     item.setChecked(true);
                 startActivity(new Intent(this, MyNotifications.class));
+                return true;
+            }
+            case R.id.menu_reset_account:{
+                if (item.isChecked())
+                    item.setChecked(false);
+                else
+                    item.setChecked(true);
+                startActivity(new Intent(this, ResetAccount.class));
                 return true;
             }
             default:
